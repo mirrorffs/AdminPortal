@@ -1,0 +1,63 @@
+
+<section class="intro">
+    <div class="gradient-custom-2 h-100">
+      <div class="mask d-flex align-items-center ">
+        <div class="container ">
+            <h2 class="text-uppercase text-center mt-5">INTERVIEWS</h2>
+            <div class="d-flex justify-content-end mt-5 mb-2">
+                <a href="/interviews/create" type="button" class="btn btn-success align-self-center">New Interview</a>
+              </div>
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="table-responsive">
+                <table class="table table-dark table-bordered table-striped mb-0">
+                  <thead>
+                    <tr>
+                        <th scope="col">COMPANY</th>
+                        <th scope="col">STUDENT</th>
+                        <th scope="col">EMAIL</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">BATCH</th>
+                        <th scope="col">DATE</th>
+                        <th scope="col" class="text-end">RESULT</th>
+                    </tr>
+                  </thead>
+                  <tbody id="student_table">
+                  
+                    <%for(student of student_list){%><%i=0%> <% while(i< student.interviews.length){%>
+                    <tr >
+                        <th scope="row"><%=student.interviews[i].company%></th>
+                        <td><%=student.name%></td>
+                        <td><%=student.email%></td>
+                        <td><%=student.phone%></td>
+                        <td><%=student.batch%></td>
+                        <td><%=student.interviews[i].date%></td>
+                        <td>
+                            <form
+                                style="display: flex; align-items: center; justify-content: center"
+                                action="/interviews/update-status/<%=student._id%>"
+                                method="post">
+                                <input hidden type="text" name="company" value="<%=student.interviews[i].company%>" />
+                                <select class="form-select" aria-label="Default select example" name="result" id="status" style="min-width: 130px">
+                                    <option selected id="delete-options"><%=student.interviews[i].result%></option>
+                                    <option value="Selected">Selected</option>
+                                    <option value="Not Selected">Not Selected</option>
+                                    <option value="On Hold">On Hold</option>
+                                    <option value="Pending">Pending</option>
+                                </select>
+
+                                <button type="submit" class="btn btn-warning btn-small m-2">Update</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <%i++%> <%}%>
+                    <%}%>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

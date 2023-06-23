@@ -1,0 +1,61 @@
+
+<section class="intro">
+    <div class="gradient-custom-2 h-100">
+      <div class="mask d-flex align-items-center ">
+        <div class="container ">
+            <h2 class="text-uppercase text-center mt-5">Students</h2>
+            <div class="d-flex justify-content-end mt-5 mb-2">
+                <a href="/students/create" type="button" class="btn btn-success align-self-center">Add Student</a>
+              </div>
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="table-responsive">
+                <table class="table table-dark table-bordered table-striped mb-0">
+                  <thead>
+                    <tr>
+                        <th scope="col">Batch</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">DSA</th>
+                        <th scope="col">WEB</th>
+                        <th scope="col">REACT</th>
+                        <th scope="col">INTERVIEW</th>
+                        <th scope="col" class="text-end">ACTION</th>
+                    </tr>
+                  </thead>
+                  <tbody id="student_table">
+                   <%for(student of student_list){%> 
+                    <tr>
+                        <th scope="row"><%=student.batch%></th>
+                        <td><%=student.name%></td>
+                        <td><%=student.email%></td>
+                        <td><%=student.phone%></td>
+                        <td><%=student.dsa%></td>
+                        <td><%=student.webd%></td>
+                        <td><%=student.react%></td>
+                        <% if(student.interviews.length){%> 
+                        <td>
+                          <%for(interview of student.interviews){%> 
+                            <p><%=interview.company%></p>
+                            <%}%>
+                        </td>
+                        <%}else{%>
+                          <td>
+                            None
+                          </td>
+                          <%}%> 
+                          <td style="display: flex; justify-content: space-around; align-items: center">
+                            <a href="/students/delete/<%=student._id%>" type="button" class="btn btn-danger btn-small">Delete</a>
+                            </td>
+                    </tr>
+                      <%}%>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
